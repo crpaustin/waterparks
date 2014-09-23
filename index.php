@@ -5,20 +5,20 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/raphael.js"></script>
 	<script src="js/jquery.usmap.js"></script>
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<!-- <script src="js/control.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body> 
 <div id="map" style="width: 750px; height: 500px;"></div>
 <div id="clicked-state"></div>
-<script>
-$('#map').usmap({
-  // The click action
-  click: function(event, data) {
-    $('#clicked-state')
-      .parent().effect('highlight', {color: '#D3D3D3'}, 2000);
-  }
-});
-
-</script>
+<?php
+	/*echo '<h1>State: ';
+	if(isset($_GET['state'])) {
+		echo $_GET['state'];
+	} else {
+		echo 'None';
+	}
+	echo '</h1>';*/
+?>
 </body>
 </html>
