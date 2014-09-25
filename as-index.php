@@ -10,7 +10,7 @@
 </head>
 <body> 
 	<?php
-	$db = mysqli_connect('localhost','root','pizza','waterpark');
+	$db = mysqli_connect('fdb6.atspace.me','1718374_water','watsonlovesgaben1','1718374_water');
 	$states = array();
 	$states = addStates($states);
 
@@ -19,7 +19,8 @@
 		if(in_array($_GET['state'],$states)) {
 			loadState();
 		} else {
-			header('location:/water');
+			//header('location:http://ourwaterpark.atspace.cc');
+			loadMap();
 		}
 	} else {
 		loadMap();
@@ -27,7 +28,7 @@
 
 	function loadState() {
 		GLOBAL $db;
-		echo '<a href="/water">&lt Back</a>';
+		echo '<a href="http://ourwaterpark.atspace.cc">&lt Back</a>';
 		echo '<h1 style="color:white;">State: ';
 		echo $_GET['state'];
 		echo '</h1>';
