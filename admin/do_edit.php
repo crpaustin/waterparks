@@ -32,6 +32,8 @@ if(isset($_SESSION['login'])) {
 
 			unset($_SESSION['active']);
 
+			if(isset($_FILES['upload'])){if(!(file_exists('../img/'.$_FILES['upload']['name']))){move_uploaded_file($_FILES['upload']['tmp_name'], '../img/' . $_FILES['upload']['name']);}}
+
 			header('location:../admin');
 
 		}

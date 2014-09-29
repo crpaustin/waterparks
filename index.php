@@ -35,6 +35,7 @@
 		echo '<ul>';
 		while($i = mysqli_fetch_array($query)) {
 			if($i['active']) {
+				echo '<img src="img/'.$i['image'].'" alt="'.$i['name'].' Image">';
 				echo '<li>';
 				echo '<a href="'.$i['website'].'">';
 				echo $i['name'];

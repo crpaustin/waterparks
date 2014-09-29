@@ -157,7 +157,7 @@
 		}
 		$_SESSION['id'] = $park['id'];
 		?>
-		<form action="do_edit.php" method="POST">
+		<form action="do_edit.php" method="POST" enctype="multipart/form-data">
 			<table>
 				<tr><td><a href="../admin">&lt Back</a></td></tr>
 				<tr><td>ID:</td><td><?php echo $park['id'] ?></td></tr>
@@ -168,6 +168,8 @@
 				<tr><td>State:</td><td><input type="text" name="state" value="<?php echo $park['state'] ?>" required></input></td></tr>
 				<tr><td>Website:</td><td><input type="text" name="website" value="<?php echo $park['website'] ?>" required></input></td></tr>
 				<tr><td>Image:</td><td><input type="text" name="image" value="<?php echo $park['image'] ?>" required></input></td></tr>
+				<!-- If admin, add image upload -->
+				<?php if($admin) { ?><tr><td>Image Upload</td><td><input type="file" name="upload" id="upload"></td></tr><?php } ?>
 				<!-- If admin, add active checkbox -->
 				<?php unset($_SESSION['active']); ?>
 				<?php if($admin){ ?><tr><td>Active:</td><td><input type="checkbox" name="active" <?php if($park['active']) { ?>checked<?php } ?>></td></tr>
@@ -182,7 +184,15 @@
 	//Submit goes to 'do_delete.php'
 	//Must be an admin
 	function loadDelete($admin) {
-		
+		if(!($admin)){header('location:../admin');}
+		if(isset($_SESSION['id'])){unset($_SESSION['id']);}
+		if(isset($_GET['id'])){$_SESSION['id'] = $_GET['id'];}
+		?>
+		<tr><td><a href="../admin">&lt Back</a></td></tr>
+		<h1><strong>WARNING: </strong>Are you sure you want to delete?</h1>
+		<h3>This action <strong>CANNOT</strong> be undone.</h3>
+		<form action="do_delete.php" method="POST"><button>Delete</button>&nbsp<a href="../admin">Cancel</a></form>
+		<?php
 	}
 
 	//If not logged in, will load this page
