@@ -17,6 +17,6 @@ while($i = mysqli_fetch_array($result)) {
 	}
 }
 
-header('location:index.php');
+header('location:../admin');
 
 ?>

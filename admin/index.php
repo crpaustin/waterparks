@@ -121,6 +121,7 @@
 		?>
 		<form action="do_new.php" method="POST">
 			<table>
+				<tr><td><a href="../admin">&lt Back</a></td></tr>
 				<tr><td>Name:</td><td><input type="text" name="name" required></td></tr>
 				<tr><td>Address:</td><td><input type="text" name="address" required></td></tr>
 				<tr><td>Zip:</td><td><input type="text" name="zip" required></td></tr>
@@ -143,6 +144,7 @@
 		$result = mysqli_use_result($db);
 		$park = array();
 		while($i = mysqli_fetch_array($result)) {
+			if($i['active']){if(!($admin)){header('location:../admin');}}
 			$park['id'] = $i['id'];
 			$park['name'] = $i['name'];
 			$park['address'] = $i['address'];
@@ -157,6 +159,7 @@
 		?>
 		<form action="do_edit.php" method="POST">
 			<table>
+				<tr><td><a href="../admin">&lt Back</a></td></tr>
 				<tr><td>ID:</td><td><?php echo $park['id'] ?></td></tr>
 				<tr><td>Name:</td><td><input type="text" name="name" value="<?php echo $park['name'] ?>" required></input></td></tr>
 				<tr><td>Address:</td><td><input type="text" name="address" value="<?php echo $park['address'] ?>" required></input></td></tr>
@@ -179,7 +182,7 @@
 	//Submit goes to 'do_delete.php'
 	//Must be an admin
 	function loadDelete($admin) {
-
+		
 	}
 
 	//If not logged in, will load this page
