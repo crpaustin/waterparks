@@ -24,14 +24,15 @@ if(isset($_SESSION['login'])) {
 			$state = mysqli_real_escape_string($db, $_POST['state']);
 			$website = mysqli_real_escape_string($db, $_POST['website']);
 			$image = mysqli_real_escape_string($db, $_POST['image']);
-			if(!isset($_POST['active'])){$_POST['active']=0;}
-			if(!isset($_SESSION['active'])){$_SESSION['active']=0;}
-			if($_POST['active']=='yes'||$_SESSION['active']==1) {$active=true;} else {$active=false;}
+			if(!(isset($_POST['active']))){$_POST['active']='off';}
+			if(!(isset($_SESSION['active']))){$_SESSION['active']=0;}
+			if($_POST['active']=='on'||$_SESSION['active']==1) {$active=true;} else {$active=false;}
 
-			$query = mysqli_real_query($db,"UPDATE parks SET name='".$name."' address='".$address."' zip='".$zip."' city='".$city."' state='".$state."' website='".$website."' image='".$image."' active='".$active."' WHERE id='".$id."'");
-			//TODO: Fix query so that it actually updates
+			$query = mysqli_real_query($db,"UPDATE parks SET name='".$name."', address='".$address."', zip='".$zip."', city='".$city."', state='".$state."', website='".$website."', image='".$image."', active='".$active."' WHERE id='".$id."'");
 
-			//header('location:../admin');
+			unset($_SESSION['active']);
+
+			header('location:../admin');
 
 		}
 	} else {

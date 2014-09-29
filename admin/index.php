@@ -103,7 +103,9 @@
 				echo '<td>'.$i['website'].'</td>';
 				echo '<td>'.$i['image'].'</td>';
 				if($admin){echo '<td>'.$i['active'].'</td>';}
-				echo '<td><a href="?p=edit&id='.$i['id'].'">Edit</a></td>';
+				echo '<td><a href="?p=edit&id='.$i['id'].'">';
+				if($admin){echo 'Edit';}else{if(!($i['active'])){echo 'Edit';}}
+				echo '</a></td>';
 				if($admin){echo '<td><a href="?p=delete&id='.$i['id'].'">Delete</a></td>';}
 				echo '</tr>';
 			}
@@ -164,6 +166,7 @@
 				<tr><td>Website:</td><td><input type="text" name="website" value="<?php echo $park['website'] ?>" required></input></td></tr>
 				<tr><td>Image:</td><td><input type="text" name="image" value="<?php echo $park['image'] ?>" required></input></td></tr>
 				<!-- If admin, add active checkbox -->
+				<?php unset($_SESSION['active']); ?>
 				<?php if($admin){ ?><tr><td>Active:</td><td><input type="checkbox" name="active" <?php if($park['active']) { ?>checked<?php } ?>></td></tr>
 				<?php } else {$_SESSION['active']=$park['active'];} ?>
 				<tr><td><button>Update</button></td></tr>
